@@ -1,0 +1,15 @@
+
+Backend for the NXTSens app
+
+## install packages ##
+
+    npm install
+
+
+## Starting server ##
+
+    npm start
+
+
+This is a very simple implementation of node server using express and mongodb.
+Here initially online mongodb service is used from www.mlab.com
