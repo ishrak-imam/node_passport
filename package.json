@@ -1,11 +1,11 @@
 {
-  "name": "nxtsens-server",
+  "name": "node_passport",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/daskalov/nxtsens-server.git"
+    "url": "https://github.com/ishrak-imam/node_passport.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +14,7 @@
     "start": "node index.js",
     "dev-server": "nodemon index.js"
   },
-  "author": "",
+  "author": "Ishrak",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

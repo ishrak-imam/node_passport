@@ -25,4 +25,4 @@ app.use(function (req, res, next) {
 })
 
 const server = app.listen(config.PORT)
-console.log(`Your server is running on port ${  config.PORT  }.`)
+console.log(`Your server is running on port ${config.PORT}.`)

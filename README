@@ -1,5 +1,4 @@
-
-Backend for the NXTSens app
+A simple server built on node with express, passport auth and mongodb.
 
 ## install packages ##
 
@@ -9,7 +8,3 @@ Backend for the NXTSens app
 ## Starting server ##
 
     npm start
-
-
-This is a very simple implementation of node server using express and mongodb.
-Here initially online mongodb service is used from www.mlab.com
