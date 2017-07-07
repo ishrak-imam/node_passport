@@ -1,6 +1,5 @@
 
 const jwt = require('jsonwebtoken'),
-  // crypto = require('crypto'),
   passport = require('passport'),
   User = require('../models/user'),
   helper = require('../helpers/helper'),
@@ -17,7 +16,7 @@ const generateToken = (user) => {
 
 const login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    if (err) {return next(err)}
+    if (err) { return next(err) }
     if (user) {
       const userInfo = helper.setUserInfo(user)
       res.status(200).send({
@@ -26,7 +25,7 @@ const login = (req, res, next) => {
         user: userInfo
       })
     }
-    if (info) {res.status(422).send(info)}
+    if (info) { res.status(422).send(info) }
   })(req, res, next)
 }
 
@@ -39,8 +38,10 @@ const register = (req, res, next) => {
   const password = req.body.password
 
   if (!email) {
-    return res.status(422).send({sucs: false,
-      msg: 'You must enter an email address.'})
+    return res.status(422).send({
+      sucs: false,
+      msg: 'You must enter an email address.'
+    })
   }
 
   // if (!firstName || !lastName) {
@@ -48,13 +49,17 @@ const register = (req, res, next) => {
   // }
 
   if (!userName) {
-    return res.status(422).send({sucs: false,
-      msg: 'you must enter an user name.'})
+    return res.status(422).send({
+      sucs: false,
+      msg: 'you must enter an user name.'
+    })
   }
 
   if (!password) {
-    return res.status(422).send({sucs: false,
-      msg: 'You must enter a password.' })
+    return res.status(422).send({
+      sucs: false,
+      msg: 'You must enter a password.'
+    })
   }
 
   User.findOne({ email: email }, function (err, existingUser) {
@@ -73,7 +78,7 @@ const register = (req, res, next) => {
       const userInfo = helper.setUserInfo(user)
       res.status(201).send({
         sucs: true,
-        token: `JWT ${  generateToken(userInfo)}`,
+        token: `JWT ${generateToken(userInfo)}`,
         user: userInfo
       })
     })

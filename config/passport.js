@@ -13,7 +13,7 @@ const localOptions = {
 }
 
 
-const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
+const localStrategy = new LocalStrategy(localOptions, (email, password, done) => {
   User.findOne({ email }, (err, user) => {
     if (err) { return done(err) }
     if (!user) { return done(null, false, errMsgs.loginErr.userNotFound) }
@@ -33,9 +33,12 @@ const jwtOptions = {
 }
 
 
-const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
+const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
   User.findById(payload._id, (err, user) => {
-    if (err) { return done(err, false) }
+    if (err) {
+      console.log('here', err)
+      return done(err, false)
+    }
     if (user) {
       done(null, user)
     } else {
@@ -44,5 +47,5 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
   })
 })
 
-passport.use(jwtLogin)
-passport.use(localLogin)
+passport.use(jwtStrategy)
+passport.use(localStrategy)

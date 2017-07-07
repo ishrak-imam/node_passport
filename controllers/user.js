@@ -9,7 +9,8 @@ const viewProfile = (req, res, next) => {
   if (req.user._id.toString() !== userId) {
     return res.status(401).send({
       sucs: false,
-      msg: 'You are not authorized to view this user profile.' })
+      msg: 'You are not authorized to view this user profile.'
+    })
   }
   User.findById(userId, (err, user) => {
     if (err) {

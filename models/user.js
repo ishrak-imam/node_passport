@@ -2,6 +2,8 @@ const mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   bcrypt = require('bcrypt-nodejs')
 
+mongoose.Promise = global.Promise
+
 const UserSchema = new Schema({
   email: {
     type: String,
@@ -17,17 +19,17 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-    // profile: {
-    //   firstName: {type: String},
-    //   lastName: {type: String}
-    // },
-    // role: {
-    //   type: String,
-    //   enum: ['Member', 'Client', 'Owner', 'Admin'],
-    //   default: 'Member'
-    // },
-  resetPasswordToken: {type: String},
-  resetPasswordExpires: {type: Date}
+  // profile: {
+  //   firstName: {type: String},
+  //   lastName: {type: String}
+  // },
+  // role: {
+  //   type: String,
+  //   enum: ['Member', 'Client', 'Owner', 'Admin'],
+  //   default: 'Member'
+  // },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date }
 },
   {
     timestamps: true

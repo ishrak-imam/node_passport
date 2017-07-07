@@ -6,7 +6,7 @@ const AuthenticationController = require('../controllers/authentication'),
   passportService = require('../config/passport')
 
 
-const requireAuth = passport.authenticate('jwt', {session: false})
+const requireAuth = passport.authenticate('jwt', { session: false })
 
 
 module.exports = (app) => {
