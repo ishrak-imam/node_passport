@@ -6,7 +6,17 @@ const express = require('express'),
   config = require('./config/main'),
   router  = require('./router/router')
 
-mongoose.connect(config.DATABASE)
+
+app.use(express.static('public'))
+
+mongoose.connect(config.DATABASE, {
+  server: {
+    socketOptions: {
+      socketTimeoutMS: 0,
+      connectionTimeout: 0
+    }
+  }
+})
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
