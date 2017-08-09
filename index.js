@@ -4,24 +4,7 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   config = require('./config/main'),
-  router = require('./router/router')
-
-
-app.use(express.static('public'))
-
-mongoose.connect(config.DATABASE, {
-  server: {
-    socketOptions: {
-      socketTimeoutMS: 0,
-      connectionTimeout: 0
-    }
-  }
-})
-
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-router(app)
+  router = require('./router/router');
 
 // Enable CORS from client-side
 app.use(function (req, res, next) {
@@ -32,7 +15,24 @@ app.use(function (req, res, next) {
     'Accept, Authorization, Access-Control-Allow-Credentials')
   res.header('Access-Control-Allow-Credentials', 'true')
   next()
-})
+});
 
-const server = app.listen(config.PORT)
-console.log(`Your server is running on port ${config.PORT}.`)
+
+app.use(express.static('public'));
+
+mongoose.connect(config.DATABASE, {
+  server: {
+    socketOptions: {
+      socketTimeoutMS: 0,
+      connectionTimeout: 0
+    }
+  }
+});
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
+router(app);
+
+const server = app.listen(config.PORT);
+console.log(`Your server is running on port ${config.PORT}.`);

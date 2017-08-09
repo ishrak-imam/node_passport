@@ -48,7 +48,8 @@ module.exports = (app) => {
 
   // upload routes
   apiRoutes.use('/upload', uploadRoutes);
-  uploadRoutes.post('/profileImage', requireAuth, uploadMiddleware, Upload.uploadHandler);
+  // uploadRoutes.post('/profileImage', requireAuth, uploadMiddleware, Upload.uploadHandler);
+  uploadRoutes.post('/profileImage', uploadMiddleware, Upload.uploadHandler);
 
 
   // Set url for API group routes
