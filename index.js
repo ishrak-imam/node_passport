@@ -4,7 +4,7 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   config = require('./config/main'),
-  router  = require('./router/router')
+  router = require('./router/router')
 
 
 app.use(express.static('public'))
