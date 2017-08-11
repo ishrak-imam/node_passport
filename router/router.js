@@ -6,8 +6,7 @@ const AuthenticationController = require('../controllers/authentication'),
   Upload = require('../controllers/upload'),
   express = require('express'),
   passport = require('passport'),
-  passportService = require('../config/passport')
-  helpers = require('../helpers/helper');
+  passportService = require('../config/passport');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 
@@ -17,13 +16,12 @@ const storage = multer.diskStorage({
     cb(null, path.resolve(__dirname, '../uploads'))
   },
   filename: function (req, file, cb) {
-    var originalname = file.originalname;
-    var extension = originalname.split(".");
-    filename = `${file.fieldname}-${Date.now()}.${extension[extension.length-1]}`
+    var extension = file.originalname.split(".");
+    filename = `${Date.now()}.${extension[extension.length - 1]}`
     cb(null, filename);
   }
 });
-const uploadMiddleware = multer({ storage }).single('profileImage');
+const uploadMiddleware = multer({ storage }).any();
 
 
 
@@ -48,8 +46,8 @@ module.exports = (app) => {
 
   // upload routes
   apiRoutes.use('/upload', uploadRoutes);
-  // uploadRoutes.post('/profileImage', requireAuth, uploadMiddleware, Upload.uploadHandler);
-  uploadRoutes.post('/profileImage', uploadMiddleware, Upload.uploadHandler);
+  uploadRoutes.post('', requireAuth, uploadMiddleware, Upload.uploadHandler);
+  // uploadRoutes.post('', uploadMiddleware, Upload.uploadHandler);
 
 
   // Set url for API group routes
