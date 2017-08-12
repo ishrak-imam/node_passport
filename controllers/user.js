@@ -5,7 +5,7 @@ const
   helper = require('../helpers/helper')
 
 const viewProfile = (req, res, next) => {
-  const userId = req.params.userId
+  const userId = req.params.userId;
   if (req.user._id.toString() !== userId) {
     return res.status(401).send({
       sucs: false,
