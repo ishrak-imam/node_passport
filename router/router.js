@@ -34,8 +34,6 @@ const storage = multer.diskStorage({
 });
 const uploadMiddleware = multer({ storage }).any();
 
-console.log(uploadMiddleware);
-
 module.exports = (app) => {
   // Initializing route groups
   const apiRoutes = express.Router();
